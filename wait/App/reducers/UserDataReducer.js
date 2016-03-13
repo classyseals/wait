@@ -18,8 +18,13 @@ const UserData = (state = initialState, action = {}) => {
   		return state.set('weightLossPerWeek', action.weight);
   	case "CHANGE_GOAL_WEIGHT":
   		return state.set('goalWeight', action.weight);
+    case "SET_START_WEIGHT":
+      return state.update('weightRecords', (weightRecords)=> {
+        return weightRecords.set(weightRecords.size - 1, Immutable.fromJS({date: 0, weight: action.weight}));
+      })
   	case "ADD_WEIGHT":
-  		return state.update('weightRecords', (weightRecords)=>weightRecords.unshift(Immutable.fromJS(action.weightRecord)));
+  		return state.update('weightRecords', (weightRecords)=>
+        weightRecords.unshift(Immutable.fromJS(action.weightRecord)));
     default:
       return state;
   }

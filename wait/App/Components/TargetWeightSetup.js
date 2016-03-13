@@ -11,6 +11,7 @@ import React, {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
+import {connect} from 'react-redux';
 
 class WeightSetup extends Component {
 	constructor(props) {
@@ -27,6 +28,10 @@ class WeightSetup extends Component {
 	}
 
 	updateWeight(goalWeight) {
+		this.props.dispatch({
+		  type: "CHANGE_GOAL_WEIGHT",
+		  weight: goalWeight
+		});
 		this.setState({ goalWeight });
 	}
 
@@ -97,4 +102,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default WeightSetup;
+export default connect()(WeightSetup);
