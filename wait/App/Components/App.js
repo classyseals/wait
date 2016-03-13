@@ -11,8 +11,8 @@ import React, {
 import ReactNativeRouter, {Route, Schema, Animations, TabBar} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import ChartContainer from '../Containers/ChartContainer';
-import TableView from './TableView';
-import ProfileView from './ProfileView';
+import TableContainer from '../Containers/TableContainer';
+import ProfileContainer from '../Containers/ProfileContainer';
 import ProfileSetup from './ProfileSetup';
 
 const Router = connect()(ReactNativeRouter.Router);
@@ -37,8 +37,8 @@ export default class App extends Component {
         <Route name="tabbar">
             <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
                 <Route name="chartView" schema="tab" title="Chart" component={ChartContainer} />
-                <Route name="tableView" schema="tab" title="Table" component={TableView} />
-                <Route name="profileView" schema="tab" title="Profile" component={ProfileView} />
+                <Route name="tableView" schema="tab" title="Table" component={TableContainer} />
+                <Route name="profileView" schema="tab" title="Profile" component={ProfileContainer} />
             </Router>
         </Route>
       </Router>)

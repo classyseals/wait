@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
+	username: 'not andrade',
 	goalWeight: 0,
 	weightRecords: [
 		{date: 1, weight: 9},
