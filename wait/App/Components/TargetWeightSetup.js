@@ -12,7 +12,7 @@ import React, {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 
-class WeightSetup extends Component {
+class TargetWeightSetup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default WeightSetup;
+export default TargetWeightSetup;
