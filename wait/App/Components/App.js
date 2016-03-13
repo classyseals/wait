@@ -1,15 +1,17 @@
 'use strict';
 
 import React, {
-	Component,
-	View,
-	Text,
-	Navigator
+  Component,
+  View,
+  Text,
+  Navigator
 } from 'react-native';
 
 import ReactNativeRouter, {Route, Schema, Animations, TabBar} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import ChartView from './ChartView';
+import TableView from './TableView';
+import ProfileView from './ProfileView';
 
 const Router = connect()(ReactNativeRouter.Router);
 
@@ -22,18 +24,20 @@ class TabIcon extends React.Component {
 }
 
 export default class App extends Component {
-	render() {
-		return (
-			<Router hideNavBar={true}>
-			<Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
-      <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
-      <Schema name="withoutAnimation"/>
-			<Schema name="tab" type="switch" icon={TabIcon} />
-			<Route name="tabbar">
-          <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
-              <Route name="chartView" schema="tab" title="Chart" component={ChartView} />
-          </Router>
-      </Route>
-			</Router>)
-	}
+  render() {
+    return (
+      <Router hideNavBar={true}>
+        <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
+        <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
+        <Schema name="withoutAnimation"/>
+        <Schema name="tab" type="switch" icon={TabIcon} />
+        <Route name="tabbar">
+            <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
+                <Route name="chartView" schema="tab" title="Chart" component={ChartView} />
+                <Route name="tableView" schema="tab" title="Table" component={TableView} />
+                <Route name="profileView" schema="tab" title="Profile" component={ProfileView} />
+            </Router>
+        </Route>
+      </Router>)
+  }
 }

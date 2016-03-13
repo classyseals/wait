@@ -1,5 +1,7 @@
-const reducers = (state = {}, action = {}) => {
-	return state;
+import GlobalReducer from './GlobalReducer';
+
+const reducers = {
+	GlobalReducer
 }
 
 export default reducers;

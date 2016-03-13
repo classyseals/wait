@@ -3,11 +3,11 @@ import React, {
 } from 'react-native';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import reducers from '../reducers';
 import App from '../Components/App';
 
-let store = createStore(reducers);
+let store = createStore(combineReducers(reducers));
 
 export default class Main extends Component {
   render() {
