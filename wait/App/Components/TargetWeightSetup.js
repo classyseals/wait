@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
-class WeightSetup extends Component {
+class TargetWeightSetup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(WeightSetup);
+export default connect()(TargetWeightSetup);
