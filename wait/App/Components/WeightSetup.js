@@ -5,6 +5,7 @@ import React, {
 	View,
 	Text,
 	StyleSheet,
+	TextInput,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -15,8 +16,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
+  weightPicker: {
+  	color: '#5F1D7A',
+  	height: 50,
+  	textAlign: 'center'
+  },
   top: {
-  	flex: 1,
+  	flex: 2,
   	padding: 30,
   	alignItems: 'center',
   	justifyContent: 'center'
@@ -30,33 +36,25 @@ const styles = StyleSheet.create({
   pageHeadline: {
   	textAlign: 'center',
   	color: '#5F1D7A',
-  	fontSize: 50,
-  	marginBottom: 20
-  },
-  pageSubtitle: {
-  	textAlign: 'justify',
-  	fontSize: 20,
+  	fontSize: 30,
   	marginBottom: 20
   },
   nextIcon: {
-  	fontSize: 100,
+  	fontSize: 50,
   	color: '#ffffff',
   	backgroundColor: '#5F1D7A',
-  	borderRadius: 50,
+  	borderRadius: 25,
   	textAlign: 'center'
   }
 });
 
-class ProfileSetup extends Component {
+class WeightSetup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			pageHeadline: 'What is your current weight?',
-			pageSubtitle: 'All meaningful goals are met one step at a time. ' +
-										'Reach your ideal weight by keeping track of your ' +
-										'progress and adjusting your effort based on your ' +
-										'results each week.',
-			ctaText: 'Create your profile'
+			ctaText: 'Next',
+			currentWeight: ''
 		};
 	}
 
@@ -64,23 +62,36 @@ class ProfileSetup extends Component {
 		Actions.tabbar()
 	}
 
+	updateWeight(currentWeight) {
+		console.log("new weight:" + currentWeight);
+		this.setState({ currentWeight });
+	}
+
 	render() {
+		const possibleNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 		return (
 			<View style={styles.container}>
 				<View style={styles.top}>
 					<Text style={styles.pageHeadline}> { this.state.pageHeadline } </Text>
-					<Text style={styles.pageSubtitle}> { this.state.pageSubtitle } </Text>
+					<TextInput
+						style={styles.weightPicker}
+						autoFocus = {true}
+					  keyboardType = 'numeric'
+					  onChangeText = {(weight) => this.updateWeight(weight)}
+					  value = {this.state.currentWeight}
+					  placeholder = "Enter your weight"
+					/>
 				</View>
 				<View style={styles.bottom}>
-					<Text style={styles.pageSubtitle}> { this.state.ctaText } </Text>
 					<Icon
 							onPress={() => this.loadNextPage()}
 							name='chevron-right'
 							style={styles.nextIcon}/>
+					<Text style={styles.pageSubtitle}> { this.state.ctaText } </Text>
 				</View>
 			</View>
 		);
 	}
 }
 
-export default ProfileSetup;
+export default WeightSetup;
