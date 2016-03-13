@@ -39,7 +39,7 @@ export default class App extends Component {
         <Route name="targetWeightSetup" component={TargetWeightSetup} />
         <Route name="weightPicker" schema="modal" component={WeightPicker} />
         <Route name="tabbar">
-            <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
+            <Router footer={TabBar} hideNavBar={true} tabBarStyle={{backgroundColor:'white'}}>
                 <Route name="chartView" schema="tab" title="Chart" component={ChartContainer} />
                 <Route name="tableView" schema="tab" title="Table" component={TableContainer} />
                 <Route name="profileView" schema="tab" title="Profile" component={ProfileContainer} />
