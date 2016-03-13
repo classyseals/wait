@@ -13,7 +13,8 @@ import {connect} from 'react-redux';
 import ChartContainer from '../Containers/ChartContainer';
 import TableContainer from '../Containers/TableContainer';
 import ProfileContainer from '../Containers/ProfileContainer';
-import ProfileSetup from './ProfileSetup';
+import WeightSetup from './WeightSetup';
+import TargetWeightSetup from './TargetWeightSetup';
 import WeightPicker from './Modals/WeightPicker';
 
 const Router = connect()(ReactNativeRouter.Router);
@@ -34,7 +35,8 @@ export default class App extends Component {
         <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
         <Schema name="withoutAnimation"/>
         <Schema name="tab" type="switch" icon={TabIcon} />
-        <Route name="profileSetup" component={ProfileSetup} />
+        <Route name="weightSetup" component={WeightSetup} />
+        <Route name="targetWeightSetup" component={TargetWeightSetup} />
         <Route name="weightPicker" schema="modal" component={WeightPicker} />
         <Route name="tabbar">
             <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
