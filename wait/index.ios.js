@@ -11,25 +11,12 @@ import React, {
   View
 } from 'react-native';
 
-import App from './App/Components/App';
+import Main from './App/Containers/Main';
 
 class wait extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <App />
-      </View>
-    );
+    return (<Main />);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});
 
 AppRegistry.registerComponent('wait', () => wait);
