@@ -31,7 +31,7 @@ export default class TableView extends Component {
 
   calculateWeeklyAverage(week, weightRecords, weekGoalWeight) {
     let weeklyWeightRecord = weightRecords.toSeq().slice(week * 7, (week + 1) * 7);
-    let sumWeightRecords = weeklyWeightRecord.reduce((sum, weightRecord)=>{ return sum + weightRecord.get('weight') }, 0);
+    let sumWeightRecords = weeklyWeightRecord.reduce((sum, weightRecord)=>{ return sum + Number(weightRecord.get('weight')) }, 0);
     let average = weeklyWeightRecord.size ? sumWeightRecords/weeklyWeightRecord.size : 0;
     return {week: week + 1, average, weekGoalWeight}
   }
