@@ -56,19 +56,18 @@ class WeightSetup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pageHeadline: 'What is your current weight?',
-			ctaText: 'Next',
-			currentWeight: ''
+			pageHeadline: 'What is your goal weight?',
+			ctaText: 'Start',
+			goalWeight: ''
 		};
 	}
 
 	loadNextPage() {
-		Actions.targetWeightSetup()
+		Actions.tabbar()
 	}
 
-	updateWeight(currentWeight) {
-		console.log("new weight:" + currentWeight);
-		this.setState({ currentWeight });
+	updateWeight(goalWeight) {
+		this.setState({ goalWeight });
 	}
 
 	render() {
@@ -83,8 +82,8 @@ class WeightSetup extends Component {
 						enablesReturnKeyAutomatically = {true}
 					  keyboardType = 'number-pad'
 					  onChangeText = {(weight) => this.updateWeight(weight)}
-					  value = {this.state.currentWeight}
-					  placeholder = "Enter your weight" />
+					  value = {this.state.goalWeight}
+					  placeholder = "Enter goal weight"/>
 				</ScrollView>
 				<ScrollView contentContainerStyle={styles.bottom}>
 					<Icon

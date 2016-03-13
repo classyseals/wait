@@ -14,6 +14,7 @@ import ChartContainer from '../Containers/ChartContainer';
 import TableContainer from '../Containers/TableContainer';
 import ProfileContainer from '../Containers/ProfileContainer';
 import WeightSetup from './WeightSetup';
+import TargetWeightSetup from './TargetWeightSetup';
 
 const Router = connect()(ReactNativeRouter.Router);
 
@@ -34,6 +35,7 @@ export default class App extends Component {
         <Schema name="withoutAnimation"/>
         <Schema name="tab" type="switch" icon={TabIcon} />
         <Route name="weightSetup" component={WeightSetup} />
+        <Route name="targetWeightSetup" component={TargetWeightSetup} />
         <Route name="tabbar">
             <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
                 <Route name="chartView" schema="tab" title="Chart" component={ChartContainer} />
