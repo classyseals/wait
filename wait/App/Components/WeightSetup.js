@@ -3,6 +3,7 @@
 import React, {
 	Component,
 	View,
+	ScrollView,
 	Text,
 	StyleSheet,
 	TextInput,
@@ -19,10 +20,13 @@ const styles = StyleSheet.create({
   weightPicker: {
   	color: '#5F1D7A',
   	height: 50,
-  	textAlign: 'center'
+  	fontSize: 30,
+  	textAlign: 'center',
+  	borderBottomColor: '#5F1D7A',
+  	borderBottomWidth: 3
   },
   top: {
-  	flex: 2,
+  	flex: 1,
   	padding: 30,
   	alignItems: 'center',
   	justifyContent: 'center'
@@ -70,24 +74,24 @@ class WeightSetup extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View style={styles.top}>
+				<ScrollView scrollEnabled={false} contentContainerStyle={styles.top}>
 					<Text style={styles.pageHeadline}> { this.state.pageHeadline } </Text>
 					<TextInput
 						style={styles.weightPicker}
 						autoFocus = {true}
-					  keyboardType = 'numeric'
+						selectTextOnFocus = {true}
+						enablesReturnKeyAutomatically = {true}
+					  keyboardType = 'number-pad'
 					  onChangeText = {(weight) => this.updateWeight(weight)}
-					  value = {this.state.currentWeight}
-					  placeholder = "Enter your weight"
-					/>
-				</View>
-				<View style={styles.bottom}>
+					  value = {this.state.currentWeight}/>
+				</ScrollView>
+				<ScrollView contentContainerStyle={styles.bottom}>
 					<Icon
 							onPress={() => this.loadNextPage()}
 							name='chevron-right'
 							style={styles.nextIcon}/>
 					<Text style={styles.pageSubtitle}> { this.state.ctaText } </Text>
-				</View>
+				</ScrollView>
 			</View>
 		);
 	}
