@@ -2,6 +2,7 @@
 
 import React, {
   Component,
+  StyleSheet,
   View,
   Text,
   Navigator
@@ -12,6 +13,7 @@ import {connect} from 'react-redux';
 import ChartContainer from '../Containers/ChartContainer';
 import TableView from './TableView';
 import ProfileView from './ProfileView';
+import ProfileSetup from './ProfileSetup';
 
 const Router = connect()(ReactNativeRouter.Router);
 
@@ -31,6 +33,7 @@ export default class App extends Component {
         <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
         <Schema name="withoutAnimation"/>
         <Schema name="tab" type="switch" icon={TabIcon} />
+        <Route name="profileSetup" component={ProfileSetup} />
         <Route name="tabbar">
             <Router footer={TabBar} hideNavBar={true} tabBarStyle={{borderTopColor:'#00bb00',borderTopWidth:1,backgroundColor:'white'}}>
                 <Route name="chartView" schema="tab" title="Chart" component={ChartContainer} />
@@ -41,3 +44,10 @@ export default class App extends Component {
       </Router>)
   }
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  }
+});
