@@ -20,9 +20,9 @@ export default class ProfileView extends Component {
       <ScrollView style={{marginTop: 60}} contentContainerStyle={styles.stage}>
         <TableView>
           <Section header="Profile">
-            <Cell cellstyle="RightDetail" title="Username" detail="test"/>
-            <Cell cellstyle="RightDetail" title="Goal Weight" detail="Goal Weight" onPress={() => console.log('Heyho!')}/>
-            <Cell cellstyle="RightDetail" title="Weight Loss Per Week" detail="0.5" onPress={() => console.log('Heyho!')}/>
+            <Cell cellstyle="RightDetail" title="Username" detail={this.props.username}/>
+            <Cell cellstyle="RightDetail" title="Goal Weight" detail={this.props.goalWeight} onPress={() => console.log('Heyho!')}/>
+            <Cell cellstyle="RightDetail" title="Weight Loss Per Week" detail={this.props.weightLossPerWeek} onPress={() => console.log('Heyho!')}/>
           </Section>
         </TableView>
       </ScrollView>)
