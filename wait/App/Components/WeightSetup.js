@@ -12,46 +12,6 @@ import React, {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-  weightPicker: {
-  	color: '#5F1D7A',
-  	height: 50,
-  	fontSize: 30,
-  	textAlign: 'center',
-  	borderBottomColor: '#5F1D7A',
-  	borderBottomWidth: 3
-  },
-  top: {
-  	flex: 1,
-  	padding: 30,
-  	alignItems: 'center',
-  	justifyContent: 'center'
-  },
-  bottom: {
-  	flex: 1,
-  	padding: 30,
-  	alignItems: 'center',
-  	justifyContent: 'center'
-  },
-  pageHeadline: {
-  	textAlign: 'center',
-  	color: '#5F1D7A',
-  	fontSize: 30,
-  	marginBottom: 20
-  },
-  nextIcon: {
-  	fontSize: 50,
-  	color: '#ffffff',
-  	backgroundColor: '#5F1D7A',
-  	borderRadius: 25,
-  	textAlign: 'center'
-  }
-});
-
 class WeightSetup extends Component {
 	constructor(props) {
 		super(props);
@@ -97,5 +57,45 @@ class WeightSetup extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  weightPicker: {
+  	color: '#5F1D7A',
+  	height: 50,
+  	fontSize: 30,
+  	textAlign: 'center',
+  	borderBottomColor: '#5F1D7A',
+  	borderBottomWidth: 3
+  },
+  top: {
+  	flex: 1,
+  	padding: 30,
+  	alignItems: 'center',
+  	justifyContent: 'center'
+  },
+  bottom: {
+  	flex: 1,
+  	padding: 30,
+  	alignItems: 'center',
+  	justifyContent: 'center'
+  },
+  pageHeadline: {
+  	textAlign: 'center',
+  	color: '#5F1D7A',
+  	fontSize: 30,
+  	marginBottom: 20
+  },
+  nextIcon: {
+  	fontSize: 50,
+  	color: '#ffffff',
+  	backgroundColor: '#5F1D7A',
+  	borderRadius: 25,
+  	textAlign: 'center'
+  }
+});
 
 export default WeightSetup;
