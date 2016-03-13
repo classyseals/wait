@@ -50,9 +50,9 @@ export default class ChartView extends Component {
               data: [props.weightRecords.get(props.weightRecords.size - 1).get('weight'), props.goalWeight],
           }
       ];
-      this.setState({
+      this.state = {
         chartData
-      });
+      };
     }
     render() {
         return (
