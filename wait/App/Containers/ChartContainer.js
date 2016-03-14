@@ -2,7 +2,6 @@ import ChartView from '../Components/ChartView';
 import {connect} from 'react-redux';
 
 const ChartContainer = connect((state)=>{
-  console.log(state);
   return {
     weightRecords: state.UserDataReducer.get('weightRecords'),
     weightLossPerWeek: state.UserDataReducer.get('weightLossPerWeek'),

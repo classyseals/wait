@@ -23,30 +23,36 @@ const xLabels = ['0','1','2','3','4','5','6','7','8','9','10','11'];
 export default class ChartView extends Component {
     constructor(props) {
         super(props);
-        let progressData = props.weightRecords.map((weightRecord)=> {
-          return weightRecord.get('weight');
-        });
-
-        let chartData = [
-            {
-                name: 'Progress',
-                color: 'gray',
-                lineWidth: 2,
-                highlightColor: 'orange',
-                showDataPoint: true,
-                data: progressData.toArray().reverse(),
-            },
-            {
-                name: 'Goal',
-                color: 'red',
-                lineWidth: 2,
-                showDataPoint: true,
-                data: [props.weightRecords.get(props.weightRecords.size - 1).get('weight'), props.goalWeight],
-            }
-        ];
         this.state = {
-          chartData
+          chartData: []
         }
+        this.componentWillReceiveProps(props);
+    }
+    componentWillReceiveProps(props) {
+      let progressData = props.weightRecords.map((weightRecord)=> {
+        return weightRecord.get('weight');
+      });
+
+      let chartData = [
+          {
+              name: 'Progress',
+              color: 'gray',
+              lineWidth: 2,
+              highlightColor: 'orange',
+              showDataPoint: true,
+              data: progressData.toArray().reverse(),
+          },
+          {
+              name: 'Goal',
+              color: 'red',
+              lineWidth: 2,
+              showDataPoint: true,
+              data: [props.weightRecords.get(props.weightRecords.size - 1).get('weight'), props.goalWeight],
+          }
+      ];
+      this.state = {
+        chartData
+      };
     }
     render() {
         return (

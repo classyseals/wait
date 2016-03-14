@@ -3,12 +3,7 @@ import Immutable from 'immutable';
 const initialState = Immutable.fromJS({
 	username: 'not andrade',
 	goalWeight: 0,
-	weightRecords: [
-		{date: 1, weight: 9},
-		{date: 2, weight: 10},
-		{date: 3, weight: 9},
-		{date: 4, weight: 11}
-	],
+	weightRecords: [],
 	weightLossPerWeek: 0.5
 });
 
@@ -18,8 +13,13 @@ const UserData = (state = initialState, action = {}) => {
   		return state.set('weightLossPerWeek', action.weight);
   	case "CHANGE_GOAL_WEIGHT":
   		return state.set('goalWeight', action.weight);
+    case "SET_START_WEIGHT":
+      return state.update('weightRecords', (weightRecords) => {
+        return weightRecords.set(weightRecords.size - 1, Immutable.fromJS({date: 0, weight: action.weight}));
+      });
   	case "ADD_WEIGHT":
-  		return state.update('weightRecords', (weightRecords)=>weightRecords.unshift(Immutable.fromJS(action.weightRecord)));
+  		return state.update('weightRecords', (weightRecords) =>
+        weightRecords.unshift(Immutable.fromJS(action.weightRecord)));
     default:
       return state;
   }

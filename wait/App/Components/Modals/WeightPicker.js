@@ -5,6 +5,7 @@ import React, {
   View,
   StyleSheet,
   Text,
+  TextInput,
   Picker,
   TouchableOpacity
 } from 'react-native';
@@ -32,6 +33,9 @@ export default class WeightPicker extends Component {
     this.props.closePicker(this.state.weight);
     Actions.pop();
   }
+  updateWeight(weight){
+    this.setState({weight});
+  }
   render() {
     let weights = this.state.range.map((weight, index)=>{    
       return (<Picker.Item key={index} label={weight.toString()} value={weight} />)
@@ -48,12 +52,19 @@ export default class WeightPicker extends Component {
           <View style={styles.header}>
             <Text style={styles.text}>Select Weight</Text>
           </View>
+          <TextInput
+            style={styles.weightPicker}
+            enablesReturnKeyAutomatically = {true}
+            keyboardType = 'number-pad'
+            onChangeText = {(weight) => this.updateWeight.bind(this)(weight)}
+            value = { this.state.weight.toString() }
+            placeholder = "Enter goal weight"/>
 
           <Picker
             style={{height: 220, width: 300}}
             itemStyle={styles.text}
-            selectedValue={this.state.weight}
-            onValueChange={(weight) => this.setState({weight: weight})}>
+            selectedValue={Number(this.state.weight)}
+            onValueChange={(weight) => { this.setState({weight: weight})}}>
             {weights}
           </Picker>
 
@@ -78,8 +89,16 @@ var styles = StyleSheet.create({
       marginRight: 5,
       alignItems: 'flex-end',
     },
+    weightPicker: {
+      color: '#5F1D7A',
+      height: 50,
+      fontSize: 30,
+      textAlign: 'center',
+      borderBottomColor: '#5F1D7A',
+      borderBottomWidth: 3
+    },
     modal: {
-        height: 300,
+        height: 350,
         width: 300,
         borderRadius: 5,
         flexDirection: 'column'
