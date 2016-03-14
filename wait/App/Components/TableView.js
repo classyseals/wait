@@ -8,6 +8,8 @@ import React, {
   StyleSheet
 } from 'react-native';
 
+import NumberUtils from '../Utils/NumberUtils';
+
 export default class TableView extends Component {
 
   constructor(props) {
@@ -47,11 +49,21 @@ export default class TableView extends Component {
   renderRow(data) {
     let background = data.week % 2 === 0 ? styles.rowLight: styles.rowDark;
     let text = data.week % 2 === 0 ? styles.text: styles.textLight;
-
+    let numUtils = new NumberUtils();
+    let formattedAverage = numUtils.removeTrailingZeroes(
+          numUtils.truncateDecimals(data.average, 2));
+    let formattedGoalWeight = numUtils.removeTrailingZeroes(
+          numUtils.truncateDecimals(data.weekGoalWeight, 2));
     return (<View style={styles.row}>
-              <View style={[{flex: 1}, styles.cellWeek, background]}><Text style={text}>{data.week}</Text></View>
-              <View style={[{flex: 3}, styles.cell, background]}><Text style={text}>{data.average}</Text></View>
-              <View style={[{flex: 3}, styles.cell, background]}><Text style={text}>{data.weekGoalWeight}</Text></View>
+              <View style={[{flex: 1},styles.cellWeek, background]}>
+                <Text style={text}>{data.week}</Text>
+              </View>
+              <View style={[{flex: 3}, styles.cell, background]}>
+                <Text style={text}>{formattedAverage}</Text>
+              </View>
+              <View style={[{flex: 3}, styles.cell, background]}>
+                <Text style={text}>{formattedGoalWeight}</Text>
+              </View>
             </View>);
   }
 

@@ -45,7 +45,7 @@ class WeightSetup extends Component {
             autoFocus = {true}
             selectTextOnFocus = {true}
             enablesReturnKeyAutomatically = {true}
-            keyboardType = 'number-pad'
+            keyboardType = 'numeric'
             onChangeText = {(weight) => this.updateWeight.bind(this)(weight)}
             value = {this.state.currentWeight}
             placeholder = "Enter your weight" />
