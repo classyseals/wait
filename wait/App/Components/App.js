@@ -18,6 +18,7 @@ import WeightSetup from './WeightSetup';
 import TargetWeightSetup from './TargetWeightSetup';
 import WeightPicker from './Modals/WeightPicker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import moment from 'moment';
 
 const Router = connect()(ReactNativeRouter.Router);
 
@@ -46,8 +47,8 @@ class App extends Component {
                       {
                         type: 'ADD_WEIGHT',
                         weightRecord: {
-                          date: 0,
-                          weight
+                          date: moment().valueOf(),
+                          weight: Number(weight)
                         }
                       })
                   }
@@ -61,28 +62,30 @@ class App extends Component {
 
   render() {
     return (
-      <Router hideNavBar={true}>
-        <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
-        <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
-        <Schema name="withoutAnimation"/>
-        <Schema name="tab" type="switch" icon={TabIcon}/>
-        <Route name="weightSetup" component={WeightSetup} />
-        <Route name="targetWeightSetup" component={TargetWeightSetup} />
-        <Route name="weightPicker" schema="modal" component={WeightPicker} />
-        <Route name="tabbar">
-            <Router footer={TabBar} hideNavBar={true} tabBarStyle={{backgroundColor:'white'}} renderRightButton={this.renderRightButton.bind(this)}>
-                <Route name="chartView" schema="tab" title="Progress" iconName={'trending-down'} component={ChartContainer} />
-                <Route name="tableView" schema="tab" title="Table" iconName={'assessment'} component={TableContainer} />
-                <Route name="profileView" schema="tab" title="Profile" iconName={'account-circle'} component={ProfileContainer} />
-            </Router>
-        </Route>
-      </Router>)
+      <View style={styles.appContainer}>
+        <Router hideNavBar={true} sceneStyle={styles.appContainer}>
+          <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom}/>
+          <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight}/>
+          <Schema name="withoutAnimation"/>
+          <Schema name="tab" type="switch" icon={TabIcon}/>
+          <Route name="weightSetup" component={WeightSetup} />
+          <Route name="targetWeightSetup" component={TargetWeightSetup} />
+          <Route name="weightPicker" schema="modal" component={WeightPicker} />
+          <Route name="tabbar">
+              <Router footer={TabBar} hideNavBar={true} tabBarStyle={{flex: 1, backgroundColor:'white'}} renderRightButton={this.renderRightButton.bind(this)}>
+                  <Route name="chartView" schema="tab" title="Progress" iconName={'trending-down'} component={ChartContainer} />
+                  <Route name="tableView" schema="tab" title="Table" iconName={'assessment'} component={TableContainer} />
+                  <Route name="profileView" schema="tab" title="Profile" iconName={'account-circle'} component={ProfileContainer} />
+              </Router>
+          </Route>
+        </Router>
+      </View>)
   }
 }
 
 const styles = StyleSheet.create({
   appContainer: {
-    flex: 1,
+    flex: 0.8,
     backgroundColor: '#FFFFFF',
   },
   addIconContainer: {
