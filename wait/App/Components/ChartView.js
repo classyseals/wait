@@ -1,68 +1,74 @@
-import React, { StyleSheet, View, Component } from 'react-native';
-import RNChart from 'react-native-chart';
+import React, {
+  Component,
+  StyleSheet
+} from 'react-native';
+
+import { LineChart } from 'react-native-ios-charts';
+
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
-    chart: {
-        position: 'absolute',
-        top: 65,
-        left: 4,
-        bottom: 55,
-        right: 16,
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch'
+  }
 });
 
+export default class Line extends Component {
+  static displayName = 'Line';
 
-const xLabels = ['0','1','2','3','4','5','6','7','8','9','10','11'];
-
-export default class ChartView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          chartData: []
-        }
-        this.componentWillReceiveProps(props);
-    }
-    componentWillReceiveProps(props) {
-      let progressData = props.weightRecords.map((weightRecord)=> {
-        return weightRecord.get('weight');
-      });
-
-      let chartData = [
-          {
-              name: 'Progress',
-              color: 'gray',
-              lineWidth: 2,
-              highlightColor: 'orange',
-              showDataPoint: true,
-              data: progressData.toArray().reverse(),
-          },
-          {
-              name: 'Goal',
-              color: 'red',
-              lineWidth: 2,
-              showDataPoint: true,
-              data: [props.weightRecords.get(props.weightRecords.size - 1).get('weight'), props.goalWeight],
-          }
-      ];
-      this.state = {
-        chartData
-      };
-    }
-    render() {
-        return (
-            <View style={styles.container}>
-                <RNChart style={styles.chart}
-                    chartData={this.state.chartData}
-                    verticalGridStep={5}
-                    xLabels={xLabels}
-                 />
-            </View>
-        );
-    }
+  render() {
+    const config = {
+      dataSets: [{
+        values: [-1, 1, -1],
+        drawValues: false,
+        colors: ['rgb(199, 255, 140)'],
+        label: 'Sine function',
+        drawCubic: true,
+        drawCircles: false,
+        lineWidth: 2
+      }, {
+        values: [1, -1, 1],
+        drawValues: false,
+        colors: ['rgb(255, 247, 141)'],
+        label: 'Cosine function',
+        drawCubic: true,
+        drawCircles: false,
+        lineWidth: 2
+      }],
+      backgroundColor: 'transparent',
+      labels: ['Jan', 'Feb', 'Mar'],
+      minOffset: 20,
+      scaleYEnabled: false,
+      legend: {
+        textSize: 12
+      },
+      xAxis: {
+        axisLineWidth: 0,
+        drawLabels: false,
+        position: 'bottom',
+        drawGridLines: false
+      },
+      leftAxis: {
+        customAxisMax: 1,
+        customAxisMin: -1,
+        labelCount: 11,
+        startAtZero: false,
+        spaceTop: 0.1,
+        spaceBottom: 0.1
+      },
+      rightAxis: {
+        enabled: false,
+        drawGridLines: false
+      },
+      valueFormatter: {
+        minimumSignificantDigits: 1,
+        type: 'regular',
+        maximumDecimalPlaces: 1
+      }
+    };
+    return (
+      <LineChart config={config} style={styles.container}/>
+    );
+  }
 }
